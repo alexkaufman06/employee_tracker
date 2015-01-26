@@ -1,0 +1,41 @@
+<h1>Employee Tracker</h1>
+
+<p>Here are all your divisions:</p>
+
+<% if @divisions.all().any?() %>
+  <ul>
+    <% @divisions.each() do |division| %>
+      <li><a href="/divisions/<%= division.id() %>"><%= division.description() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any divisions!</p>
+<% end %>
+
+<p>Create a new division:</p>
+
+<form action='/divisions' method='post'>
+  <label for='description'>Division Description:</label>
+  <input id='description' name='description' type='text' required>
+  <br>
+  <button class="btn btn-success" type="submit">Add Division!</button>
+</form>
+
+<hr>
+
+<p>Here are all your employees:</p>
+
+<ul>
+  <% @employees.each() do |employee| %>
+    <li><%= employee.name() %></li>
+  <% end %>
+</ul>
+
+<p>Create a new employee:</p>
+
+<form action='/employees' method='post'>
+  <label for='name'>Employee's Name:</label>
+  <input id='name' name='name' type='text' required>
+  <br>
+  <button class="btn btn-success" type="submit">Add Employee!</button>
+</form>
