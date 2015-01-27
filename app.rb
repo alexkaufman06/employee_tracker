@@ -24,12 +24,18 @@ end
 post('/divisions') do
   @employees = Employee.all()
   @divisions = Division.all()
-  description = params.fetch('description')
-  Division.new({:description => description}).save()
+  name = params.fetch('name')
+  Division.new({:name => name}).save()
   erb(:index)
 end
 
 get("/divisions/:id") do
   @division = Division.find(params.fetch('id'))
+  erb(:divisions)
+end
+
+post("/divisions/:id") do
+  employee = params.fetch('employee')
+  @division.add_employee(employee)
   erb(:divisions)
 end

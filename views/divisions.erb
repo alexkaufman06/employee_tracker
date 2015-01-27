@@ -1,1 +1,26 @@
-<h1><%= @division.description() %></h1>
+<h1><%= @division.name() %></h1>
+
+<% if @division.employees().any?() %>
+  <ul>
+    <% @division.employees().each() do |employee| %>
+      <li> <%= employee.name() %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any employees in this division!</p>
+<% end %>
+
+<p>Add an employee to this division:</p>
+
+<form action="/divsions/:id" method="POST">
+  <div class="form-group">
+    <input name="div_id" type="hidden" value="<%= @division %>">
+    <label class = "form-label" for="employee">Choose employee to add:</label>
+    <select class = "form-control" id="employee" name="employee">
+      <% Employee.all().each() do |employee| %>
+        <option value="<%= employee.id() %>"><%= employee.name() %></option>
+      <% end %>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Add Employee!</button>
+</form>

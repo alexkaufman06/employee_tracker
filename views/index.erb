@@ -5,7 +5,7 @@
 <% if @divisions.all().any?() %>
   <ul>
     <% @divisions.each() do |division| %>
-      <li><a href="/divisions/<%= division.id() %>"><%= division.description() %></a></li>
+      <li><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></li>
     <% end %>
   </ul>
 <% else %>
@@ -15,8 +15,8 @@
 <p>Create a new division:</p>
 
 <form action='/divisions' method='post'>
-  <label for='description'>Division Description:</label>
-  <input id='description' name='description' type='text' required>
+  <label for='name'>Division Name:</label>
+  <input id='name' name='name' type='text' required>
   <br>
   <button class="btn btn-success" type="submit">Add Division!</button>
 </form>
